@@ -83,3 +83,47 @@ Example response:
 ## Notes
 
 The `/embeddings` endpoint uses the spaCy `en_core_web_lg` model to return a 300-dimensional word embedding vector for the query word.
+
+## Docker Deployment
+
+This project includes a Docker deployment for running the FastAPI application inside a container.
+
+### Build the Docker image
+
+```bash
+docker build -t sps-genai-assignment1 .
+```
+
+### Run the Docker container
+
+```bash
+docker run --rm -p 8000:80 sps-genai-assignment1
+```
+
+### Open the API documentation
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+### Docker test result
+
+The Docker image was built and tested locally. The container successfully ran the FastAPI server, and the `POST /embeddings` endpoint returned a successful `200` response.
+
+Example request:
+
+```json
+{
+  "query_word": "king"
+}
+```
+
+Example response:
+
+```json
+{
+  "word": "king",
+  "dimension": 300,
+  "embedding": [...]
+}
+```
